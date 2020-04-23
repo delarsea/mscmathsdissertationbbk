@@ -1,6 +1,6 @@
 \documentclass[a4paper,12pt]{report}
 \usepackage{bbkproject}
-\usepackage{pagecolor,lipsum}
+\usepackage{lipsum}
 \usepackage{amsthm}
 \usepackage{amsmath}
 \usepackage{graphicx}
@@ -10,25 +10,41 @@
 
 
 \usepackage{tabu}
-\subject{Mathematics}
-\degree{M.Sc.}
-\thesis{dissertation}
-\title{}
-\author{Oliver Turnbull}
-\supervisor}
-\department{Department of Economics, Mathematics and Statistics}
-\submissiondate{$31^{\mathrm{st}}$ August 2020}
-\institution{Birkbeck, University of London}
+%\subject{Mathematics}
+%\degree{M.Sc.}
+%\thesis{dissertation}
+
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[chapter]
 \newtheorem{example}[definition]{Example}
 \newtheorem{lemma}[definition]{Lemma}
-\setcounter{tocdepth}{1}
+%\setcounter{tocdepth}{1}
 
 \begin{document}
-\pagecolor{white}
+\chapter*{Spring Progress Report}
+\section*{Topology, Data and Manifold learning}
+In the fields of statistics and machine learning, we are often preoccupied with learning an underlying manifold that minimizes some measure of error for this learning. The simplest example of this would be linear regression, where we seek to find a straight line to describe the underlying relationship we assume to exist. The process of selecting an algorithm used for manifold learning or predictive modelling then depends on the family of manifold that underlies the data, with some algorithms or in particular algorithm hyper-parameters being more or less suited to any one given dataset. These questions of "families of manifolds" are dealt with- on one level at least- by discussions of the topology of these manifolds, and by extension topological inference methods, such as that of persistent homology I will introduce later. In my dissertation, I wish to investigate the relationships between the inferred topological properties of data, to the topological properties of any underlying manifold structure, to the choice of models and hyper-parameters when attempting to learn relationships between different variables, and  in particular inferring the number of parameters or dimensions needed to separate, describe or predict from a given dataset.
 
-
-
+ \subsection*{Manifold Learning and topology of Random Fields}
+ When dealing with data, we are often concerned with reducing the dimensionality of it, especially when this dimension is very large; since in this case the data can be difficult to interpret, as well as computationally intractable. In this case we assume there is some underlying manifold of dimension lower than that of the space it is embedded in. There are a number of techniques we can use to attempt to encode data into a smaller number of sets of parameters, the most oldest example being principal component analysis \cite{pca} which describes the following algorithm for building up a series of basis vectors for which the linear subspace they define minimizes the mean squared error of the point cloud from which they are generated. 
+ 
+ 
+ 
+ \subsection*{Persistent Homology}
+ The primary metholodology for computing the topology of a data's underlying manifold is through something called persistent homology. The motivation for this method is the wish to describe the topological features of a simplicial complex generated from a dataset at different scales, and to see which features {\em persist} across the most scales.
+ 
+ \begin{definition}
+ Let $f:X \rightarrow \mathbb{R}$ where $X$ a simplicial complex and $f$ is such that for $\sigma, \tau \in X$, if $\sigma < \tau$ then $f(\sigma)\leq f(\tau)$. Then the collection of sublevel sets $\{X(a): X(a) = f^{-1}((-\infty,a]), \; a \in \mathbb{R}\}$ forms a filtration by simplicial complex containment on this simplicial complex: $$\emptyset = X_0 \leq X_1 \leq \dots \leq X_n = X$$
+ This induces homomorphisms on the simplicial homology groups of these simplicial complexes: when $i\leq j$,  $f_{i,j}: X_i\rightarrow X_j$
+ \end{definition}
+ \subsection*{Topology and Dimensionality of data}
+ Once we have found topological features of data, especially high dimensional data, we can use this to choose the inference methods for this data. A simple example of this would be the largest dimensionality of a statistically significant hole in the data would provide a lower bound for the dimensionality of the manifold from which it is sampled. In this dissertation I wish to expand on the kinds of dimensionality inferences we can make on the basis of topology, what kind of inference methods are best suited to which kinds of manifold learning, 
+ 
+ \begin{thebibliography}{}
+ \bibitem{pca} K. Pearson {\em On lines and planes of closest fit to systems of points in space} Philosophical Magazine 1901
+ \bibitem{Lawrence} N. D. Lawrence {\em A Unifying Probabilistic Perspective for Spectral Dimensionality Reduction: Insights and New Models} JMLR, 2012
+ \bibitem{} H. Edelsbrunner, D. Letscher, and A. Zomorodian {\em Topological Persistence and Simplification} Discrete Comput Geom 2002
+ \bibitem{NNTop} (Github User) Colah {\em Neural Networks, Manifolds, and Topology} 2014 https://colah.github.io/ posts/2014-03-NN-Manifolds-Topology/
+ \bibitem{}
+ \end{thebibliography}
 \end{document}
-
